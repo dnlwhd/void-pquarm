@@ -6,6 +6,9 @@ source_dir="$pwd"
 nvidia_pkg=nvidia
 display_mgr=lightdm
 
+export WINEPREFIX="$source_dir"/project-quarm
+export WINEARCH=win32
+
 [ "$1" = -u ] && {
     sudo xbps-remove -yR Vulkan-Headers Vulkan-Tools wine wine-32bit winetricks wine-gecko wine-mono
     rm -r "$WINEPREFIX"
@@ -47,8 +50,6 @@ sudo xbps-install -yS Vulkan-Headers Vulkan-Tools wine wine-32bit winetricks win
 sudo xbps-remove -yR void-repo-multilib
 
 ### Create WINE Prefix
-export WINEPREFIX="$source_dir"/project-quarm
-export WINEARCH=win32
 wineboot
 
 ### Extract dxvk to the WINE Prefix
